@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Menu from './components/menu';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getCart} from '../src/actions/CartActions';
+import {getCart} from '../src/actions/cartActions';
 
 class Main extends Component {
 	componentDidMount(){

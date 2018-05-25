@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators} from 'redux';
-import {addToCart,updateCart} from '../../actions/CartActions';
+import {addToCart,updateCart} from '../../actions/cartActions';
 
 class BookItem extends Component {
 	constructor(props){

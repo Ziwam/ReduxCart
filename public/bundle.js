@@ -3848,7 +3848,7 @@ var _reactRedux = __webpack_require__(13);
 
 var _redux = __webpack_require__(6);
 
-var _CartActions = __webpack_require__(25);
+var _cartActions = __webpack_require__(68);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4105,9 +4105,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return (0, _redux.bindActionCreators)({
-		deleteCartItem: _CartActions.deleteCartItem,
-		updateCart: _CartActions.updateCart,
-		getCart: _CartActions.getCart
+		deleteCartItem: _cartActions.deleteCartItem,
+		updateCart: _cartActions.updateCart,
+		getCart: _cartActions.getCart
 	}, dispatch);
 }
 

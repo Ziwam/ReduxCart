@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {deleteCartItem, updateCart, getCart} from '../../actions/CartActions';
+import {deleteCartItem, updateCart, getCart} from '../../actions/cartActions';
 
 class Cart extends Component {
 	constructor(props) {
