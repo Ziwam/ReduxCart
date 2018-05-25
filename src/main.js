@@ -1,7 +1,6 @@
 "use strict"
 import React, {Component} from 'react';
 import Menu from './components/menu';
-import Footer from './components/footer';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {getCart} from '../src/actions/CartActions';
@@ -16,7 +15,6 @@ class Main extends Component {
 			<div>
 				<Menu cartItems={this.props.totalQty}/>
 					{this.props.children}
-				<Footer/>
 			</div>
 		);
 	}

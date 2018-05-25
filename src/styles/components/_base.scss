@@ -1,0 +1,25 @@
+@import '../helpers/_mixins.scss';
+
+@font-face {
+  font-family: "Lucida_Sans_Regular";
+  src: url("../assets/Lucida_Sans_Regular.ttf");
+}
+
+html, body {
+  height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-body, sans-serif;
+  background-color: #EDEDED;
+}
+
+html {
+  box-sizing: border-box;
+}

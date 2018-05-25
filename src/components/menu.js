@@ -1,39 +1,38 @@
 "use strict"
 import React, {Component} from 'react';
-import {Nav, NavItem, Navbar, Badge} from 'react-bootstrap';
 
 class Menu extends Component {
+	constructor(props) {
+		super(props);
+		this.state= {
+			showMenu: false
+		}
+	}
+
+	toggleMenu = () => {
+		this.setState({showMenu: !this.state.showMenu});
+	}
+
 	render() {
 		return (
-			<Navbar inverse fixedTop>
-			  <Navbar.Header>
-			    <Navbar.Brand>
-			      <a href="/">ReduxCart</a>
-			    </Navbar.Brand>
-			    <Navbar.Toggle />
-			  </Navbar.Header>
-			  <Navbar.Collapse>
-			    <Nav>
-			      <NavItem eventKey={1} href="/about">
-			        About
-			      </NavItem>
-			      <NavItem eventKey={2} href="/contacts">
-			        Contact Us
-			      </NavItem>
-			    </Nav>
-			    <Nav pullRight>
-			      <NavItem eventKey={1} href="/admin">
-			        Admin
-			      </NavItem>
-			      <NavItem eventKey={2} href="/cart">Your Cart
+			<nav className="menu">
+		      <h1>ReduxCart</h1>
+		      <div className={`links${this.state.showMenu? "":" hidden"}`}>
+			      <a href="/">Home</a>
+			      <a href="/admin">Admin</a>
+			      <a href="/cart">Cart
 			       { (this.props.cartItems > 0 )
-			       	?(<Badge className="badge">{this.props.cartItems}</Badge>)
+			       	?(<span className="badge">({this.props.cartItems})</span>)
 			       	:('')
 			       }
-			      </NavItem>
-			    </Nav>
-			  </Navbar.Collapse>
-			</Navbar>
+			      </a>
+		      </div>
+		      <div className="menu_btn" onClick={this.toggleMenu}>
+				<div className="bar1"></div>
+				<div className="bar2"></div>
+				<div className="bar3"></div>
+		      </div>
+			</nav>
 		);
 	}
 }

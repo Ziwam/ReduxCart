@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {MenuItem,InputGroup, DropdownButton, Image, Col, Row, Well, Panel, FormControl, FormGroup, ControlLabel, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {findDOMNode} from 'react-dom';
@@ -30,6 +29,7 @@ class BookForm extends Component {
 	handleSubmit(){
 		const book = [{
 			title: findDOMNode(this.refs.title).value,
+			author: findDOMNode(this.refs.author).value,
 			description: findDOMNode(this.refs.description).value,
 			images: findDOMNode(this.refs.images).value,
 			price: findDOMNode(this.refs.price).value,
@@ -43,15 +43,16 @@ class BookForm extends Component {
 		this.props.deleteBooks(bookId)
 	}
 
-	handleSelect(img){
+	handleSelect(evn){
 		this.setState({
-			img: '/images/'+img
+			img: `/images/${evn.target.value}`
 		})
 	}
 
 	resetForm(){
 		this.props.resetButton();
 		findDOMNode(this.refs.title).value = '';
+		findDOMNode(this.refs.author).value = '';
 		findDOMNode(this.refs.description).value = '';
 		findDOMNode(this.refs.price).value = '';
 		this.setState({img: ''});
@@ -68,72 +69,63 @@ class BookForm extends Component {
 
 		const imgList = this.state.images.map(function(imgArr, i){
 			return(
-				<MenuItem key={i} eventKey={imgArr.name}
-				onClick={this.handleSelect.bind(this, imgArr.name)}>{imgArr.name}</MenuItem>
+				<option key={i}
+				value={imgArr.name}>{imgArr.name}</option>
 			)
 		},this)		
 
 		return (
-			<Well>
-				<Row>
-					<Col xs={12} sm={6}>
-						<Panel>
-							<InputGroup>
-						      <FormControl type="text" ref="images" value={this.state.img}/>
-						      <DropdownButton
-						        componentClass={InputGroup.Button}
-						        id="input-dropdown-addon"
-						        title="Select Image"
-						        bsStyle="primary"
-						      >
-						        {imgList}
-						      </DropdownButton>
-						    </InputGroup>
-						    <Image src={this.state.img} responsive/>
-						</Panel>
-					</Col>
-					<Col xs={12} sm={6}>
-						<Panel>
-							<FormGroup controlId="title">
-								<ControlLabel>Title</ControlLabel>
-								<FormControl
-									type="text"
-									placeholder="Enter Title"
-									ref="title"/>
-							</FormGroup>
-							<FormGroup controlId="description">
-								<ControlLabel>Description</ControlLabel>
-								<FormControl
-									type="text"
-									placeholder="Enter Description"
-									ref="description"/>
-							</FormGroup>
-							<FormGroup controlId="Price">
-								<ControlLabel>Price</ControlLabel>
-								<FormControl
-									type="text"
-									placeholder="Enter Price"
-									ref="price"/>
-							</FormGroup>
-							<Button onClick={(!this.props.msg)?(this.handleSubmit.bind(this)):(this.resetForm.bind(this))} 
-								bsStyle={(!this.props.style)?("primary"):(this.props.style)}
+			<div className="form_wrapper">
+				<div className="form">
+					<div className="image_input">
+						<div className="top">
+							<input type="text" ref="images" value={this.state.img}/>
+							<select
+								className="dropdown"
+								value="select"
+								onChange={(evn)=>this.handleSelect(evn)}
 							>
-								{(!this.props.msg)?("Save book"):(this.props.msg)}
-							</Button>
-						</Panel>
-						<Panel style={{marginTop:'25px'}}>
-							<FormGroup controlId="formControlsSelect">
-						      <ControlLabel>Select a book id</ControlLabel>
-						      <FormControl ref="delete" componentClass="select" placeholder="select">
-						        <option value="select">select</option>
-						       	{bookList}
-						      </FormControl>
-						   </FormGroup>
-						   <Button onClick={this.onDelete.bind(this)} bsStyle="danger">Delete book</Button>
-						</Panel>
-					</Col>
-				</Row>
-			</Well>
+								<option value="select">select</option>
+							{imgList}
+							</select>
+						</div>
+					    <img src={this.state.img} alt=""/>
+					</div>
+					<div className="info_input">
+							<h5>Title</h5>
+							<input
+								type="text"
+								placeholder="Enter Title"
+								ref="title"/>
+							<h5>Author</h5>
+							<input
+								type="text"
+								placeholder="Enter Author"
+								ref="author"/>
+							<h5>Description</h5>
+							<textarea
+								type="text"
+								placeholder="Enter Description"
+								ref="description"
+							>
+							</textarea>
+							<h5>Price</h5>
+							<input
+								type="text"
+								placeholder="Enter Price"
+								ref="price"/>
+						<button className="save_btn" onClick={(!this.props.msg)?(this.handleSubmit.bind(this)):(this.resetForm.bind(this))}>
+							{(!this.props.msg)?("save book"):(this.props.msg)}
+						</button>
+					      <h5>Select a book id</h5>
+					      <select ref="delete" placeholder="select">
+					        <option value="select">select</option>
+					       	{bookList}
+					      </select>
+					   <button className="delete_btn" onClick={this.onDelete.bind(this)}>delete book</button>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

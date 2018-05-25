@@ -1,7 +1,6 @@
 "use strict"
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Panel, Col, Row, Well, Button, ButtonGroup, Label, Modal} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {deleteCartItem, updateCart, getCart} from '../../actions/CartActions';
 
@@ -47,6 +46,30 @@ class Cart extends Component {
 		this.props.updateCart(_id,-1, this.props.cart);
 	}
 
+	createCartItems = () => {
+		return this.props.cart.map((cartArr) => {
+			return (
+				<div className="cart_item" key={cartArr._id}>
+					<div className="item">
+						<button className="delete_btn" onClick={this.onDelete.bind(this,cartArr._id)}>X</button>
+						<img src={cartArr.images} alt=""/>
+						<div className="text">
+							<span className="title">{cartArr.title}</span>
+							<span className="id">{cartArr._id}</span>
+						</div>
+					</div>
+					<div className="quantity">
+						<button onClick={this.onIncrement.bind(this,cartArr._id)}>+</button>
+						<span>{cartArr.quantity}</span>
+						<button onClick={this.onDecrement.bind(this,cartArr._id, cartArr.quantity)} >-</button>
+					</div>
+					<span className="price">${cartArr.price}</span>
+					<span className="total">${cartArr.price * cartArr.quantity}</span>
+				</div>
+			)
+		})
+	}
+
 	render() {
 		return this.props.cart[0]
 		? this.renderCart()
@@ -58,61 +81,43 @@ class Cart extends Component {
 	}
 
 	renderCart(){
-		const cartItemsList = this.props.cart.map(function(cartArr){
-			return (
-				<Panel key={cartArr._id}>
-					<Row>
-						<Col xs={12} sm={4}>
-							<h6>{cartArr.title}</h6><span>    </span>
-						</Col>
-						<Col xs={12} sm={2}>
-							<h6>$ {cartArr.price}</h6>
-						</Col>
-						<Col xs={12} sm={2}>
-							<h6>qty. <Label bsStyle="success">{cartArr.quantity}</Label></h6>
-						</Col>
-						<Col xs={6} sm={4}>
-							<ButtonGroup style={{minWidth: '300px'}}>
-								<Button onClick={this.onDecrement.bind(this,cartArr._id, cartArr.quantity)} bsStyle="default" bsSize="small">-</Button>
-								<Button onClick={this.onIncrement.bind(this,cartArr._id)} bsStyle="default" bsSize="small">+</Button>
-								<span>     </span>
-								<Button onClick={this.onDelete.bind(this,cartArr._id)} bsStyle="danger" bsSize="small">DELETE</Button>
-							</ButtonGroup>
-						</Col>
-					</Row>
-				</Panel>
-			)
-		}, this)
+		const cartItemsList = this.createCartItems();
+
 		return(
-			<Panel bsStyle="primary">
-				<Panel.Heading>Cart</Panel.Heading>
-				<Panel.Body>
+			<div className="cart">
+				<h3>Shopping Cart</h3>
+				<div className="categories">
+					<span className="large">item</span>
+					<span>quantity</span>
+					<span>price</span>
+					<span>total</span>
+				</div>
+				<div className="wrapper">
 					{cartItemsList}
-					<Row>
-						<Col xs={12}>
-							<h6>Total amount: {this.props.totalAmount}</h6>
-							<Button onClick={this.open.bind(this)} bsStyle="success" bsSize="small">
-								Proceed To Checkout
-							</Button>
-						</Col>
-					</Row>
-					<Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-		          <Modal.Header closeButton>
-		            <Modal.Title>Thank You</Modal.Title>
-		          </Modal.Header>
-		          <Modal.Body>
-		          	<h6>Your order is saved</h6>
-		          		<p>Shipment confirmed</p>
-		          </Modal.Body>
-		          <Modal.Footer>
-		          	<Col xs={6}>
-							<h6>total $:{this.props.totalAmount}</h6>
-		          	</Col>
-		            <Button onClick={this.close.bind(this)}>Close</Button>
-		          </Modal.Footer>
-		        </Modal>
-				</Panel.Body>
-			</Panel>
+					<div className="checkout">
+						<p>${this.props.totalAmount}</p>
+						<button onClick={this.open.bind(this)}>
+							checkout
+						</button>
+					</div>
+				</div>
+				<div className={`modal${this.state.showModal? "":" hidden"}`}>
+					<div className="backdrop"></div>
+					<div className="wrapper">
+						<div className="content">
+				            <h4>Thank You</h4>
+				            <div className="mid">
+					          	<p>Your order is saved</p>
+					          	<p>Shipment confirmed</p>
+				            </div>
+				          	<div className="bottom">
+								<h5>total $:{this.props.totalAmount}</h5>
+					            <button onClick={this.close.bind(this)}>Close</button>
+				          	</div>
+						</div>
+					</div>
+		        </div>
+			</div>
 		)
 	}
 }

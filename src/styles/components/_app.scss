@@ -1,0 +1,36 @@
+@import '../helpers/_mixins.scss';
+
+.main_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  .book_list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 40px;   
+  }
+}
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #A8A8A8;
+  &:hover {
+  background: #969696;
+  }
+}

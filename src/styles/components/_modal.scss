@@ -1,0 +1,70 @@
+@import '../helpers/_mixins.scss';
+
+.modal {
+	.backdrop {
+		position: fixed;
+		background-color: #000;
+		top: 0;
+		left: 0;
+		opacity: .4;
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.wrapper {
+		display: flex;
+		position: fixed;
+		z-index: 1;
+		top: 25vh;
+		left: 0;
+		width: 100%;
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			background-color: #fff;
+			margin: auto;
+			width: 300px;
+
+			h4 {
+				margin: 0;
+				padding: 40px 0 20px 0;
+				background-color: #17B460;
+				text-align: center;
+				color: #fff;
+			}
+
+			.mid {
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				border-bottom: 1px solid #9E9E9E;
+				border-top: 1px solid #9E9E9E;
+			}
+
+			.bottom {
+				display: flex;
+				flex-wrap: nowrap;
+				margin: 20px 0 10px;
+
+				h5 {
+					margin: 0;
+					margin: auto;
+				}
+
+				button {
+					padding: 5px 10px;
+					border: 1px solid #9E9E9E;
+					color: #9E9E9E;
+					background-color: transparent;
+					margin-left: auto;
+					margin-right: 30px;
+				}
+			}
+		}
+	}
+
+	&.hidden {
+		display: none;
+	}
+}

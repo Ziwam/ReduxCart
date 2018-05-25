@@ -1,0 +1,92 @@
+@import '../helpers/_mixins.scss';
+
+.book_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 70px;
+  margin: auto;
+
+  .book {
+    background-color: #fff;
+    max-width: 370px;
+    display: flex;
+    margin: 0 17px;
+    border-radius: 4px;
+
+    img {
+      height: 190px;
+      width: auto;
+      margin:-30px 20px 0;
+      box-shadow: -7px 10px 10px rgba(0, 0, 0, .1);
+      @include mobile {
+        height: 100px;
+        margin: auto 10px;
+      }
+    }
+    
+    .info {
+      display: flex;
+      flex-direction: column;
+      width: 170px;
+      margin: 20px 15px 10px auto;
+
+      p {
+        margin: 0;
+        color: #666;
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+      }
+
+      .top {
+        margin-bottom: 16px;
+        .title {
+          font-weight: 700;
+          margin-bottom: 6px;
+        }
+
+        .author {
+          font-size: .8em;
+        }
+      }
+
+      .description {
+        font-size: .8em;
+        margin-bottom: 16px;
+
+        .more {
+          color: #000;
+        }
+      }
+
+      .bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin-left: auto;
+
+        button {
+          padding: 8px 10px;
+          color: #a3d39c;
+          border: 1px solid #a3d39c;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    padding-top: 30px;
+    .book {    
+      margin: auto;
+      img {
+        height: 100px;
+        margin: auto 10px;      
+      }
+    }
+  }
+} 

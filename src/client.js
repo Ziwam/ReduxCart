@@ -9,6 +9,12 @@ import { postBooks, deleteBooks, updateBooks} from './actions/booksActions';
 import logger from 'redux-logger';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import thunk from 'redux-thunk';
+import "./styles/index.scss";
+import BookList from './components/pages/booksList';
+import Menu from './components/menu';
+import BooksForm from './components/pages/bookForm';
+import Main from './main';
+import Cart from './components/pages/cart';
 
 const middleware = applyMiddleware(thunk, logger);
 const store = createStore(reducers, middleware);
@@ -16,13 +22,6 @@ const store = createStore(reducers, middleware);
 // store.subscribe( function(){
 // 	console.log('the current props is:', store.getState());
 // })
-
-import BookList from './components/pages/booksList';
-import Menu from './components/menu';
-import Footer from './components/footer';
-import BooksForm from './components/pages/bookForm';
-import Main from './main';
-import Cart from './components/pages/cart';
 
 const Routes = (
 	<Provider store={store}>
