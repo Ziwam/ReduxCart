@@ -1,16 +1,19 @@
 @import '../helpers/_mixins.scss';
 
-.main_wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-direction: column;
-  .book_list{
+#app {
+  .main_wrapper {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    margin-bottom: 40px;   
+    justify-content: center;
+    flex-direction: column;
+    .book_list{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 40px;   
+    }
   }
+
 }
 
 /* width */

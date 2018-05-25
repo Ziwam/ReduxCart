@@ -7,7 +7,8 @@ class BookItem extends Component {
 	constructor(props){
 		super(props);
 		this.state ={
-			isClicked: false
+			isClicked: false,
+			overflow: false
 		}
 	}
 
@@ -42,24 +43,35 @@ class BookItem extends Component {
 		this.setState({isClicked: !this.state.isClicked})
 	}
 
+	readMore(){
+		let txt = ''
+		if(this.state.isClicked){
+			txt = (this.props.description)
+		}else {
+			txt = (this.props.description.substring(0,120))
+		}
+
+		return txt;
+	}
+
 	render() {
 		return (
 			<div className="book">
 						<img src={this.props.images} alt=""/>
 						<div className="info">
 							<div className="top">
-								<p className="title">{(this.props.title.length > 13 && this.state.isClicked === false)
-								?(this.props.title.substring(0,16)+"...")
-								:(this.props.title)}</p>
+								<p className="title">{this.props.title}</p>
 								<p className="author">{this.props.author}</p>
 							</div>
-							<p className="description">{(this.props.description.length > 120 && this.state.isClicked === false)
-								?(this.props.description.substring(0,120))
-								:(this.props.description)}
-								<button className='more' onClick={this.toggleReadMore.bind(this)}>
-									{(this.state.isClicked === false && this.props.description !== null &&
-									this.props.description.length > 50)?('...read more'):('...show less')}
-								</button>
+							<p className="description">{(this.props.description.length < 120)
+								?(this.props.description)
+								:(this.readMore())}
+								{(this.props.description.length > 120)
+								?(<button className='more' onClick={this.toggleReadMore.bind(this)}>
+										{(this.state.isClicked === false && this.props.description !== null &&
+										this.props.description.length > 50)?('...read more'):('...show less')}
+								</button>)
+								:('')}
 							</p>
 							<div className="bottom">
 								<p className="price">$ {this.props.price}</p>

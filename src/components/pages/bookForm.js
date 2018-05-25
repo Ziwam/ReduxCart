@@ -10,7 +10,8 @@ class BookForm extends Component {
 		super(props);
 		this.state = {
 			images:[{}],
-			img:''
+			img:'',
+			error: false
 		}
 	}
 
@@ -27,13 +28,26 @@ class BookForm extends Component {
 	}
 
 	handleSubmit(){
+		const title = findDOMNode(this.refs.title).value,
+			author = findDOMNode(this.refs.author).value,
+			description = findDOMNode(this.refs.description).value,
+			images = findDOMNode(this.refs.images).value,
+			price = findDOMNode(this.refs.price).value;
+
+		if(!title || !author || !description || !images || !price) {
+			this.setState({error: true});
+			return;
+		}
+		this.setState({error: false});
+
 		const book = [{
-			title: findDOMNode(this.refs.title).value,
-			author: findDOMNode(this.refs.author).value,
-			description: findDOMNode(this.refs.description).value,
-			images: findDOMNode(this.refs.images).value,
-			price: findDOMNode(this.refs.price).value,
+			title,
+			author,
+			description,
+			images,
+			price
 		}]
+
 		this.props.postBooks(book);
 	}
 
@@ -79,7 +93,7 @@ class BookForm extends Component {
 				<div className="form">
 					<div className="image_input">
 						<div className="top">
-							<input type="text" ref="images" value={this.state.img}/>
+							<input className="img_txt" type="text" ref="images" value={this.state.img}/>
 							<select
 								className="dropdown"
 								value="select"
@@ -107,6 +121,7 @@ class BookForm extends Component {
 								type="text"
 								placeholder="Enter Description"
 								ref="description"
+								maxLength="300"
 							>
 							</textarea>
 							<h5>Price</h5>
@@ -117,11 +132,12 @@ class BookForm extends Component {
 						<button className="save_btn" onClick={(!this.props.msg)?(this.handleSubmit.bind(this)):(this.resetForm.bind(this))}>
 							{(!this.props.msg)?("save book"):(this.props.msg)}
 						</button>
-					      <h5>Select a book id</h5>
-					      <select ref="delete" placeholder="select">
-					        <option value="select">select</option>
-					       	{bookList}
-					      </select>
+						<div className={`error ${this.state.error? "show":""}`}>Please fill in all fields before submitting.</div>
+						<h5>Select a book id</h5>
+						<select ref="delete" placeholder="select">
+							<option value="select">select</option>
+							{bookList}
+						</select>
 					   <button className="delete_btn" onClick={this.onDelete.bind(this)}>delete book</button>
 					</div>
 				</div>

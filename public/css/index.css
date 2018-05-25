@@ -17,12 +17,12 @@ body {
 html {
   box-sizing: border-box; }
 
-.main_wrapper {
+#app .main_wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column; }
-  .main_wrapper .book_list {
+  #app .main_wrapper .book_list {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -113,14 +113,16 @@ html {
   flex-wrap: wrap;
   width: 100%;
   margin-top: 40px;
-  justify-content: center; }
+  justify-content: center;
+  margin-bottom: 40px; }
   .form_wrapper .form {
     background-color: #fff;
     display: flex;
     flex-wrap: wrap;
     margin: 0 30px;
     justify-content: center;
-    max-width: 900px;
+    max-width: 800px;
+    width: 90%;
     padding: 20px;
     padding-bottom: 0;
     border-radius: 4px; }
@@ -132,6 +134,8 @@ html {
       flex-direction: column;
       margin-bottom: 20px; }
       .form_wrapper .form .image_input .top {
+        display: flex;
+        flex-wrap: nowrap;
         margin: 0 auto;
         margin-bottom: 15px; }
         .form_wrapper .form .image_input .top select {
@@ -143,11 +147,17 @@ html {
           border-radius: 3px;
           margin-left: 10px;
           box-shadow: -5px 5px 7px rgba(0, 0, 0, 0.1); }
-        .form_wrapper .form .image_input .top input {
+        .form_wrapper .form .image_input .top .img_txt {
           border: none;
           border-bottom: 1.3px solid #C9C9C9;
-          padding-bottom: 7px;
-          color: #666; }
+          padding-bottom: 1px;
+          width: 120px;
+          color: #666;
+          font-size: .7em;
+          text-align: center;
+          margin-bottom: 0; }
+          .form_wrapper .form .image_input .top .img_txt:focus {
+            outline: none; }
       .form_wrapper .form .image_input img {
         width: 225px;
         height: auto;
@@ -158,17 +168,19 @@ html {
       min-width: 260px; }
       .form_wrapper .form .info_input h5 {
         margin: 0;
-        font-size: 1em;
+        font-size: 1.2em;
         font-weight: 100;
         color: #666; }
       .form_wrapper .form .info_input input, .form_wrapper .form .info_input select, .form_wrapper .form .info_input textarea {
         width: 100%;
-        margin: 4px 0 15px 0;
+        margin: 8px 0 19px 0;
         border: none;
         color: #666; }
+        .form_wrapper .form .info_input input:focus, .form_wrapper .form .info_input select:focus, .form_wrapper .form .info_input textarea:focus {
+          outline: none; }
       .form_wrapper .form .info_input input, .form_wrapper .form .info_input select {
         border-bottom: 1.3px solid #C9C9C9;
-        padding-bottom: 7px; }
+        padding-bottom: 2px; }
       .form_wrapper .form .info_input textarea {
         height: 60px;
         border: 1.3px solid #C9C9C9; }
@@ -183,6 +195,13 @@ html {
           background-color: #9ebde3; }
         .form_wrapper .form .info_input button.delete_btn {
           background-color: #f5917b; }
+      .form_wrapper .form .info_input .error {
+        display: none;
+        font-size: .8em;
+        color: #f5917b;
+        margin-bottom: 15px; }
+        .form_wrapper .form .info_input .error.show {
+          display: block; }
   @media (max-width: 620px) {
     .form_wrapper .form {
       display: inline;
@@ -191,7 +210,9 @@ html {
         margin: auto; }
       .form_wrapper .form .info_input {
         margin: auto;
-        margin-top: 30px; } }
+        margin-top: 30px; }
+        .form_wrapper .form .info_input h5 {
+          font-size: 1.2em; } }
 
 .cart {
   background-color: #fff;
@@ -199,7 +220,8 @@ html {
   max-width: 700px;
   margin: auto;
   margin-top: 40px;
-  border-radius: 4px; }
+  border-radius: 4px;
+  margin-bottom: 40px; }
   .cart h3 {
     margin: 0;
     padding: 12px 40px;
@@ -255,7 +277,8 @@ html {
           .cart .wrapper .cart_item .item .text span {
             text-align: left; }
           .cart .wrapper .cart_item .item .text .title {
-            font-size: .9em; }
+            font-size: .9em;
+            margin-bottom: 5px; }
           .cart .wrapper .cart_item .item .text .id {
             font-size: .7em; }
       .cart .wrapper .cart_item .quantity {
@@ -361,7 +384,8 @@ html {
         justify-content: space-between;
         align-items: center;
         width: 90%;
-        margin-left: auto; }
+        margin-left: auto;
+        margin-top: auto; }
         .book_wrapper .book .info .bottom button {
           padding: 8px 10px;
           color: #a3d39c;
@@ -371,7 +395,8 @@ html {
     .book_wrapper {
       padding-top: 30px; }
       .book_wrapper .book {
-        margin: auto; }
+        margin: auto;
+        min-height: 0; }
         .book_wrapper .book img {
           height: 100px;
           margin: auto 10px; } }
@@ -397,23 +422,31 @@ html {
     flex-direction: column;
     background-color: #fff;
     margin: auto;
-    width: 300px; }
+    width: 300px;
+    border-radius: 4px;
+    -webkit-animation: fade-in .5s .1s ease-out 1 normal backwards, slide-in-up .4s .1s ease-out 1 normal backwards;
+    -moz-animation: fade-in .5s .1s ease-out 1 normal backwards, slide-in-up .4s .1s ease-out 1 normal backwards;
+    -o-animation: fade-in .5s .1s ease-out 1 normal backwards, slide-in-up .4s .1s ease-out 1 normal backwards;
+    animation: fade-in .5s .1s ease-out 1 normal backwards, slide-in-up .4s .1s ease-out 1 normal backwards; }
     .modal .wrapper .content h4 {
       margin: 0;
       padding: 40px 0 20px 0;
-      background-color: #17B460;
+      background-color: #87D57B;
       text-align: center;
-      color: #fff; }
+      color: #fff;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px; }
     .modal .wrapper .content .mid {
       display: flex;
       flex-direction: column;
       text-align: center;
       border-bottom: 1px solid #9E9E9E;
-      border-top: 1px solid #9E9E9E; }
+      color: #666; }
     .modal .wrapper .content .bottom {
       display: flex;
       flex-wrap: nowrap;
-      margin: 20px 0 10px; }
+      margin: 20px 0 10px;
+      color: #666; }
       .modal .wrapper .content .bottom h5 {
         margin: 0;
         margin: auto; }
@@ -423,10 +456,13 @@ html {
         color: #9E9E9E;
         background-color: transparent;
         margin-left: auto;
-        margin-right: 30px; }
+        margin-right: 30px;
+        border-radius: 3px; }
 
 .modal.hidden {
   display: none; }
+  .modal.hidden .backdrop {
+    opacity: 0; }
 
 @-webkit-keyframes fade-in {
   0% {

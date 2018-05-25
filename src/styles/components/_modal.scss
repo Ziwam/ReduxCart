@@ -25,13 +25,16 @@
 			background-color: #fff;
 			margin: auto;
 			width: 300px;
+			border-radius: 4px;
 
 			h4 {
 				margin: 0;
 				padding: 40px 0 20px 0;
-				background-color: #17B460;
+				background-color: #87D57B;
 				text-align: center;
 				color: #fff;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
 			}
 
 			.mid {
@@ -39,13 +42,14 @@
 				flex-direction: column;
 				text-align: center;
 				border-bottom: 1px solid #9E9E9E;
-				border-top: 1px solid #9E9E9E;
+				color: #666;
 			}
 
 			.bottom {
 				display: flex;
 				flex-wrap: nowrap;
 				margin: 20px 0 10px;
+				color: #666;
 
 				h5 {
 					margin: 0;
@@ -59,12 +63,21 @@
 					background-color: transparent;
 					margin-left: auto;
 					margin-right: 30px;
+					border-radius: 3px;
 				}
 			}
+
+			@include animation(
+				'fade-in .5s .1s ease-out 1 normal backwards',
+				'slide-in-up .4s .1s ease-out 1 normal backwards'
+			);
 		}
 	}
 
 	&.hidden {
+		.backdrop {
+			opacity: 0;
+		}
 		display: none;
 	}
 }

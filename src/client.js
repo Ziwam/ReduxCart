@@ -6,7 +6,6 @@ import {applyMiddleware, createStore} from 'redux';
 import reducers from './reducers';
 import {addToCart} from './actions/cartActions';
 import { postBooks, deleteBooks, updateBooks} from './actions/booksActions';
-import logger from 'redux-logger';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import thunk from 'redux-thunk';
 import "./styles/index.scss";
@@ -16,7 +15,7 @@ import BooksForm from './components/pages/bookForm';
 import Main from './main';
 import Cart from './components/pages/cart';
 
-const middleware = applyMiddleware(thunk, logger);
+const middleware = applyMiddleware(thunk);
 const store = createStore(reducers, middleware);
 
 // store.subscribe( function(){

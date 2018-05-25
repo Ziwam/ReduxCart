@@ -111,7 +111,7 @@ class Cart extends Component {
 					          	<p>Shipment confirmed</p>
 				            </div>
 				          	<div className="bottom">
-								<h5>total $:{this.props.totalAmount}</h5>
+								<h5>total ${this.props.totalAmount}</h5>
 					            <button onClick={this.close.bind(this)}>Close</button>
 				          	</div>
 						</div>
