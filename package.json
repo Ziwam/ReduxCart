@@ -4,8 +4,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "run-p build client api",
-    "client": "nodemon ./bin/www",
+    "start": "run-p client api",
+    "client": "node ./bin/www",
     "api": "node apiServer.js",
     "build": "webpack"
   },
